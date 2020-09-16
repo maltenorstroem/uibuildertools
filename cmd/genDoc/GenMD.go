@@ -2,8 +2,8 @@ package main
 
 import (
 	"bytes"
+	"github.com/maltenorstroem/uibuildertools/cmd"
 	"github.com/spf13/cobra/doc"
-	"github.com/theNorstroem/uibuildertools/cmd"
 	"io/ioutil"
 	"log"
 

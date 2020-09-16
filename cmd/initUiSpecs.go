@@ -1,8 +1,8 @@
 package cmd
 
 import (
+	"github.com/maltenorstroem/uibuildertools/internal/cmd/initUiSpecs"
 	"github.com/spf13/cobra"
-	"github.com/theNorstroem/uibuildertools/internal/cmd/initUiSpecs"
 )
 
 // initUiSpecsCmd represents the initUiSpecs command

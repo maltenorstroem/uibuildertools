@@ -17,8 +17,8 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/maltenorstroem/uibuildertools/internal/cmd/runner"
 	"github.com/spf13/cobra"
-	"github.com/theNorstroem/uibuildertools/internal/cmd/runner"
 	"os"
 
 	"github.com/spf13/viper"

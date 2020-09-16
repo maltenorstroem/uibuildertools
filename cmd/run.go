@@ -22,8 +22,8 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"github.com/maltenorstroem/uibuildertools/internal/cmd/runner"
 	"github.com/spf13/cobra"
-	"github.com/theNorstroem/uibuildertools/internal/cmd/runner"
 )
 
 // runCmd represents the run command

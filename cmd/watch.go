@@ -22,7 +22,7 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"github.com/theNorstroem/uibuildertools/internal/cmd/watcher"
+	"github.com/maltenorstroem/uibuildertools/internal/cmd/watcher"
 
 	"github.com/spf13/cobra"
 )
