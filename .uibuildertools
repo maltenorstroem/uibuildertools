@@ -1,9 +1,10 @@
 module: "github.com/sample/repo" #the name of the git repo where your spec project resides
 version: "v0.0.1"
 dependencies:
-  - "git@git.devres.internal.adcubum.com:7999/syrsl/syrius-claimsmgmt-servicesmgmt-bff-spec.git"
+  - "git@git.devres.internal.adcubum.com:7999/syrsl/syrius-claimsmgmt-servicesmgmt-bff-spec.git master"
   - "github.com/theNorstroem/furoBaseTypes v1.0.0" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
 dependenciesDir: installedSpecs
+u33eFormat: "yaml" #set to yaml or json
 installedSpecDir: "./specs"
 uiSpecsOutputDir: "./ui_specs/"
 
