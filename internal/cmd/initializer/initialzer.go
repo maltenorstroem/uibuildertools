@@ -42,6 +42,7 @@ type UiBuilderConfig struct {
 	UiSpecsOutputDir string              `json:"ui_specs_output_dir" yaml:"ui_specs_output_dir"`
 	Commands         map[string]string   `json:"commands" yaml:"commands"`
 	Flows            map[string][]string `json:"flow" yaml:"flows"`
+	Hooks            map[string][]string `json:"hooks" yaml:"hooks"`
 	Build            map[string]string   `json:"build" yaml:"build"`
 }
 
