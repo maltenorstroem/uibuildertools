@@ -451,7 +451,7 @@ type Fielduiextension struct {
 	Component string `protobuf:"bytes,1,opt,name=component,proto3" json:"component"`
 	// UI element flags like full, double, hidden,...
 	Flags []string `protobuf:"bytes,2,rep,name=flags,proto3" json:"flags"`
-	// Skip adding this field on ui init
+	// Skip adding this field on ui initializer
 	NoInit bool `protobuf:"varint,3,opt,name=no_init,json=noInit,proto3" json:"no_init"`
 	// do not skip this field, even it is in the default skip list
 	NoSkip bool `protobuf:"varint,4,opt,name=no_skip,json=noSkip,proto3" json:"no_skip"`

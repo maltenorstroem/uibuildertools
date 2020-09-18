@@ -22,21 +22,18 @@ THE SOFTWARE.
 package cmd
 
 import (
-	"fmt"
+	"github.com/maltenorstroem/uibuildertools/internal/cmd/initializer"
 	"github.com/spf13/cobra"
 )
 
 // initCmd represents the Init command
 var initCmd = &cobra.Command{
-	Use:   "init",
+	Use:   "initialize",
 	Short: "Creates a initial uibuildertool config",
 	Long: `Init creates a initial uibuildertool config with defaults.
 
-Comming soon...`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("This feature is not available at the moment. Please create a .uibuildertool config file by hand.")
-
-	},
+`,
+	Run: initializer.Run,
 }
 
 // needed for the documentation generator

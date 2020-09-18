@@ -30,8 +30,8 @@ uibuildertools [flags]
 
 ### SEE ALSO
 
-* [uibuildertools init](uibuildertools_init.md)	 - Creates a initial uibuildertool config
 * [uibuildertools initUiSpecs](uibuildertools_initUiSpecs.md)	 - Creates u33e UI spec files
+* [uibuildertools initialize](uibuildertools_initialize.md)	 - Creates a initial uibuildertool config
 * [uibuildertools install](uibuildertools_install.md)	 - Installs the dependencies
 * [uibuildertools run](uibuildertools_run.md)	 - Runs a configured flow.
 * [uibuildertools watch](uibuildertools_watch.md)	 - Watch u33e changes and generate components.

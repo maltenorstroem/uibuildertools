@@ -20,9 +20,9 @@ Example Config:
 	  publish_npm: "./scripts/test.sh"
 	hooks:
       service:
-		- node_modules/@furo/ui-builder/_scripts/hook-init-reference-search.js
+		- node_modules/@furo/ui-builder/_scripts/hook-initializer-reference-search.js
 	  type:
-		- node_modules/@furo/ui-builder/_scripts/hook-init-form.js
+		- node_modules/@furo/ui-builder/_scripts/hook-initializer-form.js
 `,
 	Run: initUiSpecs.Run,
 }

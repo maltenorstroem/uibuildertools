@@ -1,0 +1,14 @@
+module: github.com/sample/repo
+version: v0.0.1
+dependencies: []
+dependency_dir: ""
+u33e_format: yaml
+installed_spec_dir: ./specs
+ui_specs_output_dir: ./ui_specs
+commands: {}
+flows:
+    default:
+        - initialize
+        - initUiSpecs
+build:
+    componentsTargetDir: ./dist/components/generated_components
