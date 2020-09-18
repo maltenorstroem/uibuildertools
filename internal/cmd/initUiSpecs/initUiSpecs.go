@@ -90,10 +90,7 @@ func Run(cmd *cobra.Command, args []string) {
 	root.AddRootNode("furo-data-object")
 	root.AddRootNode("furo-collection-agent")
 
-	//importedU33e := u33eBuilder.ImportU33e("./samples/u33e/test-form-ui5.u33e")
-
 	var file []byte
-	//var importedFile []byte
 	outputFormat := viper.GetString("u33eFormat")
 	if outputFormat == "yaml" {
 		file, _ = yaml.Marshal(root)
@@ -103,7 +100,13 @@ func Run(cmd *cobra.Command, args []string) {
 		//	importedFile, _ = json.Marshal(importedU33e)
 	}
 	_ = ioutil.WriteFile(viper.GetString("uiSpecsOutputDir")+"/test."+outputFormat, file, 0644)
-	//_ = ioutil.WriteFile(viper.GetString("uiSpecsOutputDir")+"/test-import."+outputFormat, importedFile, 0644)
+
+	// TEST: import / export
+	var importOutput []byte
+	importedU33e := u33eBuilder.ImportU33e("./ui_specs/test.yaml")
+	importOutput, _ = yaml.Marshal(importedU33e)
+
+	_ = ioutil.WriteFile(viper.GetString("uiSpecsOutputDir")+"/test-import."+outputFormat, importOutput, 0644)
 
 	fmt.Println("\nstruct out")
 	fmt.Println(root)

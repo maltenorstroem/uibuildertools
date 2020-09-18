@@ -40,26 +40,11 @@ Example Config:
 	[.uibuildertools]
 	commands:
 	  publish_npm: "./scripts/test.sh"
-	flows:
-	  type:
-		- cleanTypeProtoDir
-		- muType2Spec
-		- TypeSpec2Proto
-		- publish_npm
+	default:
+    - initUiSpecs
 
 Command:
 
-This config will run "cleanTypeProtoDir",  muType2Spec"" and "TypeSpec2Proto" in sequence and calling the command publish_npm
-
-Tipp: If you need the types and services in your command, just call spectools again. 
-
-Like:
-    #!/bin/bash
-
-    # generate the type documentation...
-    spectools exportAsYaml | simple-generator -t scripts/typedoc.tpl > dist/typedoc.md
-
-[example](../samples/typedoc/readme.md)
 `,
 	Run: runner.Run,
 }
