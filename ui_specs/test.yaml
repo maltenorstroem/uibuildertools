@@ -12,7 +12,55 @@ imports:
 component_name: furo-ui5-super-comp
 extends: FBP(LitElement)
 path: ""
-template: []
+styles:
+  :host:
+    display: block
+    height: 100%
+  :host([hidden]):
+    display: none
+template:
+- component: furo-form-layouter
+  description: Please provide a description
+  flags: []
+  attributes: {}
+  methods: {}
+  events: {}
+  inner_text: ""
+  children:
+  - component: furo-ui5-data-text-input
+    description: Please provide a description
+    flags: []
+    attributes: {}
+    methods:
+      ƒ-bind-data: --entity(*.name)
+    events: {}
+    inner_text: ""
+    children: []
+  - component: furo-ui5-data-text-input
+    description: Please provide a description
+    flags: []
+    attributes: {}
+    methods:
+      ƒ-bind-data: --entity(*.first_name)
+    events: {}
+    inner_text: ""
+    children: []
+- component: furo-data-object
+  description: Please provide a description
+  flags: []
+  attributes: {}
+  methods: {}
+  events: {}
+  inner_text: ""
+  children: []
+- component: furo-collection-agent
+  description: Please provide a description
+  flags: []
+  attributes: {}
+  methods: {}
+  events: {}
+  inner_text: ""
+  children: []
 property:
   design:
     description: Defines the design. Available options are "Default", "Emphasized", "Positive", "Negative", and "Transparent".

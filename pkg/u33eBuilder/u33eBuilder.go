@@ -86,10 +86,73 @@ func (u33e *U33eModel) AddKeyboardShortcut(key KeyboardShortcut) (u33 *U33eModel
 }
 
 // Adds a css style block
-
-// Adds a dom node to dom node or template
-// Do not forget to add a import for the used componentName
-func (u33e *U33eModel) AddDomNode(componentname string, parentNode string) (u33 *U33eModel) {
-
+func (u33e *U33eModel) AddCssStyleBlock(selector string, cssBlock map[string]string) (u33 *U33eModel) {
+	if u33e.Styles == nil {
+		u33e.Styles = make(map[string]map[string]string)
+	}
+	u33e.Styles[selector] = cssBlock
 	return u33e
+}
+
+// Adds a dom node to the template root
+// Do not forget to add a import for the used componentName
+func (u33e *U33eModel) AddRootNode(componentname string) (node *DomNode) {
+
+	comp := DomNode{
+		Component:   componentname,
+		Description: "Please provide a description",
+		Flags:       nil,
+		Attributes:  nil,
+		Methods:     nil,
+		Events:      nil,
+		InnerText:   "",
+		Children:    nil,
+	}
+	u33e.Template = append(u33e.Template, &comp)
+	return &comp
+}
+
+// Adds a dom node to the template root
+// Do not forget to add a import for the used componentName
+func (parent *DomNode) AddDomNode(componentname string) (node *DomNode) {
+
+	comp := DomNode{
+		Component:   componentname,
+		Description: "Please provide a description",
+		Flags:       nil,
+		Attributes:  nil,
+		Methods:     nil,
+		Events:      nil,
+		InnerText:   "",
+		Children:    nil,
+	}
+	parent.Children = append(parent.Children, &comp)
+	return &comp
+}
+
+// Adds attributes to a DomNode
+func (domNode *DomNode) AddAttribute(key string, value string) (node *DomNode) {
+	if domNode.Attributes == nil {
+		domNode.Attributes = make(map[string]string)
+	}
+	domNode.Attributes[key] = value
+	return domNode
+}
+
+// Adds flow based method to a DomNode
+func (domNode *DomNode) AddMethod(name string, wire string) (node *DomNode) {
+	if domNode.Methods == nil {
+		domNode.Methods = make(map[string]string)
+	}
+	domNode.Methods["ƒ-"+name] = wire
+	return domNode
+}
+
+// Adds flow based event listener to a DomNode
+func (domNode *DomNode) AddEventlistener(event string, wire string) (node *DomNode) {
+	if domNode.Events == nil {
+		domNode.Events = make(map[string]string)
+	}
+	domNode.Events["@-"+event] = wire
+	return domNode
 }

@@ -2,25 +2,20 @@ package u33eBuilder
 
 // Internal model of the abstract u33e file
 type U33eModel struct {
-	Description   string         `json:"description" yaml:"description"`
-	Summary       string         `json:"summary" yaml:"summary"`
-	ImportMembers []MemberImport `json:"import_members" yaml:"import_members"`
-	Imports       []string       `json:"imports" yaml:"imports"`
-	ComponentName string         `json:"component_name" yaml:"component_name"`
-	Extends       string         `json:"extends" yaml:"extends"`
-	Path          string         `json:"path" yaml:"path"`
-	//Style         map[string]CssBlock `json:"style" yaml:"style"`
-
-	//	this.model.style = {
-	//      'children': {},
-	//      'attributes': {},
-	//    }
-	Template          []DomNode              `json:"template" yaml:"template"`
-	Properties        map[string]Property    `json:"property" yaml:"property"`
-	ExposedWires      map[string]ExposedWire `json:"exposed_wire" yaml:"exposed_wire"`
-	Methods           map[string]Method      `json:"methods" yaml:"methods"`
-	KeyboardShortcuts []KeyboardShortcut     `json:"keyboard_shortcuts" yaml:"keyboard_shortcuts"`
-	Theme             string                 `json:"theme" yaml:"theme"`
+	Description       string                       `json:"description" yaml:"description"`
+	Summary           string                       `json:"summary" yaml:"summary"`
+	ImportMembers     []MemberImport               `json:"import_members" yaml:"import_members"`
+	Imports           []string                     `json:"imports" yaml:"imports"`
+	ComponentName     string                       `json:"component_name" yaml:"component_name"`
+	Extends           string                       `json:"extends" yaml:"extends"`
+	Path              string                       `json:"path" yaml:"path"`
+	Styles            map[string]map[string]string `json:"styles" yaml:"styles"`
+	Template          []*DomNode                   `json:"template" yaml:"template"`
+	Properties        map[string]Property          `json:"property" yaml:"property"`
+	ExposedWires      map[string]ExposedWire       `json:"exposed_wire" yaml:"exposed_wire"`
+	Methods           map[string]Method            `json:"methods" yaml:"methods"`
+	KeyboardShortcuts []KeyboardShortcut           `json:"keyboard_shortcuts" yaml:"keyboard_shortcuts"`
+	Theme             string                       `json:"theme" yaml:"theme"`
 }
 
 // Declares an import with single or multiple exports from a module
@@ -46,6 +41,17 @@ type Property struct {
 	AttributeName string `json:"attribute_name" yaml:"attribute_name"`
 }
 
+// Css style block
+type CssBlock struct {
+	CssProps []CssProp `json:"css_props" yaml:"css_props"`
+}
+
+// Css single property
+type CssProp struct {
+	Key   string `json:"key" yaml:"key"`
+	Value string `json:"value" yaml:"value"`
+}
+
 // Declares a keyboard shortcut
 type KeyboardShortcut struct {
 	Description string `json:"description" yaml:"description"`
@@ -69,8 +75,8 @@ type DomNode struct {
 	Description string            `json:"description" yaml:"description"`
 	Flags       []string          `json:"flags" yaml:"flags"`
 	Attributes  map[string]string `json:"attributes" yaml:"attributes"`
-	Methods     map[string]Method `json:"methods" yaml:"methods"`
+	Methods     map[string]string `json:"methods" yaml:"methods"`
 	Events      map[string]string `json:"events" yaml:"events"`
 	InnerText   string            `json:"inner_text" yaml:"inner_text"`
-	Children    []DomNode         `json:"children" yaml:"children"`
+	Children    []*DomNode        `json:"children" yaml:"children"`
 }
