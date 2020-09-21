@@ -10,11 +10,20 @@ import (
 	"github.com/theNorstroem/spectools/pkg/util"
 	"log"
 	"os"
+	"os/exec"
 	"path"
 	"strings"
 )
 
 func Run(cmd *cobra.Command, args []string) {
+
+	freshInstall := false
+	f := cmd.Flag("fresh")
+	if f != nil {
+		freshInstall = f.Value.String() == "true"
+		fmt.Println("Fresh install requested")
+	}
+
 	fmt.Println("Installing dependencies")
 	deps := viper.GetStringSlice("dependencies")
 	fmt.Println(deps)
@@ -33,6 +42,10 @@ func Run(cmd *cobra.Command, args []string) {
 			mkdirRecursive(dep.DependencyPath)
 		}
 		if dep.Kind == util.GIT {
+			// removie repodir if freshInstall is requested
+			if freshInstall {
+				os.RemoveAll(packageRepoDir)
+			}
 			// create path if it does not exist
 			if !util.DirExists(packageRepoDir) {
 				// create
@@ -43,8 +56,15 @@ func Run(cmd *cobra.Command, args []string) {
 					Depth:    1,
 					Progress: os.Stdout,
 				})
+
 				if err != nil {
-					log.Fatal(err)
+					// use exec
+					log.Println(err)
+					log.Println("switching to git executable")
+					e := CloneWithGitCommand(packageRepoDir, dep.Repository)
+					if e != nil {
+						log.Fatal(err)
+					}
 				}
 			}
 
@@ -54,8 +74,13 @@ func Run(cmd *cobra.Command, args []string) {
 				log.Fatal(err)
 			}
 			err = r.Fetch(&git.FetchOptions{Tags: git.AllTags})
-			if err != nil {
+			if err != nil && err != git.NoErrAlreadyUpToDate {
 				fmt.Println(dep.Repository, err.Error())
+				log.Println("switching to git executable")
+				e := FetchWithGitCommand(packageRepoDir)
+				if e != nil {
+					log.Fatal(err)
+				}
 			}
 
 			// Get the working directory for the repository
@@ -94,6 +119,22 @@ func Run(cmd *cobra.Command, args []string) {
 		}
 
 	}
+}
+
+func FetchWithGitCommand(packageRepoDir string) error {
+	cmd := exec.Command("git", "fetch", "--depth=1")
+	cmd.Dir = packageRepoDir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
+}
+
+func CloneWithGitCommand(packageRepoDir string, repository string) error {
+	cmd := exec.Command("git", "clone", "--depth=1", repository, ".")
+	cmd.Dir = packageRepoDir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
 }
 
 func mkdirRecursive(subdir string) {

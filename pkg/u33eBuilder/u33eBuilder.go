@@ -1,6 +1,8 @@
 package u33eBuilder
 
 import (
+	"encoding/json"
+	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"log"
@@ -26,6 +28,20 @@ func ImportU33e(fpath string) (u33e U33eModel) {
 		log.Fatal(parseError)
 	}
 	return u33e
+}
+
+// Exports abstract u33e model to file
+func ExportAbstractU33e(u33e U33eModel) (error error) {
+	var file []byte
+	outputFormat := viper.GetString("u33eFormat")
+	if outputFormat == "yaml" {
+		file, _ = yaml.Marshal(u33e)
+	} else {
+		file, _ = json.Marshal(u33e)
+	}
+	err := ioutil.WriteFile(viper.GetString("uiSpecsOutputDir")+"/test."+outputFormat, file, 0644)
+
+	return err
 }
 
 // Adds a description to the model of the u33e abstract file
