@@ -1,10 +1,10 @@
 ## uibuildertools runTypeHooks
 
-Creates u33e UI spec files
+Runs the type hooks
 
 ### Synopsis
 
-Creates the u33e UI specification files according to the hooks entered in the .uibuildertools config (hooks.types, hook.services)
+Runs the type hooks according to the hooks entered in the .uibuildertools config (hooks.types)
 
 To configure the hooks add a "hook" in the hooks section of your .uibuildertools config.
 
@@ -15,9 +15,9 @@ Example Config:
 	  publish_npm: "./scripts/test.sh"
 	hooks:
       service:
-		- node_modules/@furo/ui-builder/_scripts/hook-initializer-reference-search.js
+		- ./samples/uiHooks/testTypeHook.go
 	  type:
-		- node_modules/@furo/ui-builder/_scripts/hook-initializer-form.js
+		- ./samples/uiHooks/testServiceHook.go
 
 
 ```
