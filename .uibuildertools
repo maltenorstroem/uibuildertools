@@ -1,8 +1,8 @@
 module: "github.com/sample/repo" #the name of the git repo where your spec project resides
 version: "v0.0.1"
 dependencies:
-  - "git@git.devres.internal.adcubum.com:7999/syrsl/syrius-claimsmgmt-servicesmgmt-bff-spec.git master"
-  - "github.com/theNorstroem/furoBaseTypes v1.0.0" # The importer looks for all **/*.type.spec files recursive The importer looks for all **/*.service.spec files recursive
+  - "ssh://git@git.devres.internal.adcubum.com:7999/syrsl/syrius-claimsmgmt-servicesmgmt-bff-spec.git master"
+  - "git@github.com/theNorstroem/furoBaseTypes.git v1.0.0"
 dependenciesDir: installedSpecs
 u33eFormat: "yaml" #set to yaml or json
 installedSpecDir: "./specs"
@@ -15,11 +15,13 @@ flows:
   default:
     - initialize
     - initUiSpecs
+    - runTypeHooks
 
 hooks:
   types:
-    - "./node_modules/@furo/ui-builder/_scripts/hook-init-form-ui5.js"
+    - "./samples/ui_hooks/test-hook"
+    - "./samples/ui_hooks/test-hook2"
   services:
-    - "./node_modules/@furo/ui-builder/_scripts/hook-init-reference-search-ui5.js"
+    - ""
 build:
   targetDir: "./dist/components/generated_components"
